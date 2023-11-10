@@ -25,3 +25,5 @@
 - 4. As a Glenda, she wants to know who are all liked her post book. `select users.username as liked_glenda_post from users inner join likes on users.userid=likes.userid where likes.postid=13;`
 
 - 5. Edina needs to know the post count which are liked by others. `SELECT COUNT(DISTINCT posts.postid) FROM posts inner join likes on posts.postid=likes.postid where posts.userid = 1;`
+
+- 6. Paula needs to check the count of awarness and trickes likes count, here awarness id is 17 and trickes id is 20.`SELECT COUNT(likes.likeid) FROM likes where likes.postid = 17 or likes.postid=20;`
