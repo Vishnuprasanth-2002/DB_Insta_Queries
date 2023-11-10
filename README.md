@@ -17,3 +17,5 @@
 ## task
 
 - 1. list all users `SELECT * from users;`
+
+- 2. list all posts `SELECT * from posts`
