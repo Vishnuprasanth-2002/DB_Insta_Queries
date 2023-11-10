@@ -27,3 +27,6 @@
 - 5. Edina needs to know the post count which are liked by others. `SELECT COUNT(DISTINCT posts.postid) FROM posts inner join likes on posts.postid=likes.postid where posts.userid = 1;`
 
 - 6. Paula needs to check the count of awarness and trickes likes count, here awarness id is 17 and trickes id is 20.`SELECT COUNT(likes.likeid) FROM likes where likes.postid = 17 or likes.postid=20;`
+
+- 7. List Posts of Edina which has likes and also not liked posts.
+`SELECT posts.postcontent as PostOfEdina FROM posts where posts.userid = 1;`
