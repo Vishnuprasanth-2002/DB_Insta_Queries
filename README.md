@@ -2,6 +2,7 @@
 
 - To create database, CREATE DATABASE instaclone
 - To connect the database, \c instaclone
+
 ## Create table
 
 CREATE TABLE users(user_id SERIAL PRIMARY KEY NOT NULL, name VARCHAR NOT NULL);
@@ -15,6 +16,7 @@ CREATE TABLE likes(like_id SERIAL PRIMARY KEY NOT NULL, post_id SERIAL REFERENCE
 user_id SERIAL REFERENCES users(user_id))
 
 ## Insert datas
+
 INSERT INTO users(name) VALUES('Edina'),('Colin'),('Glenda'),('Paula');
 
 INSERT INTO posts(post_content, user_id) VALUES('craft',1),('sale',1),('design',1),('tips',1),('lesson',1);
@@ -41,28 +43,42 @@ INSERT INTO likes(post_id, user_id) VALUES(13, 3),(13,4),(13,1),(13,2),(14,1),(1
 - 6. Paula needs to check the count of awarness and trickes likes count, here awarness id is 17 and trickes id is 20.`SELECT posts.post_content, COUNT(likes.like_id) FROM posts LEFT JOIN likes ON posts.post_id = likes.post_id WHERE posts.post_id IN (17, 20) GROUP BY posts.post_content;`
 
 - 7. List Posts of Edina which has likes and also not liked posts.
-`SELECT posts.postcontent as PostOfEdina FROM posts where posts.userid = 1;`
+     `SELECT
+    p.post_id,
+    p.post_content,
+    CASE WHEN COUNT(l.like_id) > 0 THEN 'Liked' ELSE 'Not Liked' END AS like_status
+FROM
+    posts p
+LEFT JOIN
+    likes l ON p.post_id = l.post_id
+WHERE
+    p.user_id = (SELECT user_id FROM users WHERE name = 'Edina')
+GROUP BY
+    p.post_id, p.post_content
+ORDER BY
+    like_status;`
 
 - 8. Search all users posts with Text "sal"
 
 The LIKE operator is case sensitive, if you want to do a case insensitive search, use the ILIKE operator instead.
 
-`SELECT * FROM posts WHERE posts.postcontent ILIKE '%sal%';`
+`SELECT * FROM posts WHERE posts.post_content ILIKE '%sal%';`
 
 - 9. Get the count of colin posts
-`SELECT COUNT(posts.postid) AS no_of_colin_post FROM posts WHERE  posts.userid=2;`
+     `SELECT COUNT(posts.post_id) AS no_of_colin_post FROM posts WHERE  posts.user_id=2;`
 
 - 10. Get count of likes for the post cartoon. user colin
-`instaclone=# select COUNT(likes.likeid) AS cartoon_likes from likes where likes.postid = 7;`
+      `select COUNT(likes.like_id) AS cartoon_likes_count from likes where likes.post_id = 7;`
 
 11. Get the maximum likes posts.
-`instaclone=# select postid, count(postid) from likes GROUP BY postid HAVING COUNT(postid)>1 order by count(postid) desc limit 2;`
+    `select postid, count(postid) from likes GROUP BY postid HAVING COUNT(postid)>1 order by count(postid) desc limit 2;`
+
 - 12. In Edina, sort posts by title in forward.
       post content is ordered by ascending order for the user edina.
-`instaclone=# select * from posts where userid=1 ORDER BY postcontent;`
+      `instaclone=# select * from posts where userid=1 ORDER BY postcontent;`
 
 - 13. In Paula, sort post by date backward.
-`instaclone=# select * from posts where userid=4 ORDER BY postdate DESC;`
+      `instaclone=# select * from posts where userid=4 ORDER BY postdate DESC;`
 
 - 14. Filter today posted posts.
-`instaclone=# select * from posts where postdate= 'today';`
+      `instaclone=# select * from posts where postdate= 'today';`
