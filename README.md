@@ -71,11 +71,11 @@ The LIKE operator is case sensitive, if you want to do a case insensitive search
       `select COUNT(likes.like_id) AS cartoon_likes_count from likes where likes.post_id = 7;`
 
 11. Get the maximum likes posts.
-    `select postid, count(postid) from likes GROUP BY postid HAVING COUNT(postid)>1 order by count(postid) desc limit 2;`
+    `select post_id, count(post_id) from likes GROUP BY post_id HAVING COUNT(post_id)>1 order by count(post_id) desc limit 2;`
 
 - 12. In Edina, sort posts by title in forward.
       post content is ordered by ascending order for the user edina.
-      `instaclone=# select * from posts where userid=1 ORDER BY postcontent;`
+      `iselect * from posts where userid=1 ORDER BY postcontent;`
 
 - 13. In Paula, sort post by date backward.
       `instaclone=# select * from posts where userid=4 ORDER BY postdate DESC;`
