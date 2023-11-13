@@ -30,20 +30,19 @@ INSERT INTO likes(post_id, user_id) VALUES(13, 3),(13,4),(13,1),(13,2),(14,1),(1
 
 ## task
 
-- 1. list all users `SELECT * from users;`
+1. list all users `SELECT * from users;`
 
-- 2. list all posts `SELECT * from posts`
+2. list all posts `SELECT * from posts`
 
-- 3. List posts that are liked by colin `select posts.post_content as liked_By_Colin from posts left join likes on posts.post_id = likes.post_id where likes.user_id = 2;`
+3. List posts that are liked by colin `select posts.post_content as liked_By_Colin from posts left join likes on posts.post_id = likes.post_id where likes.user_id = 2;`
 
-- 4. As a Glenda, she wants to know who are all liked her post book. `select users.name as glendas_post_book_liked_by from users inner join likes on users.user_id=likes.user_id where likes.post_id=13;`
+4. As a Glenda, she wants to know who are all liked her post book. `select users.name as glendas_post_book_liked_by from users inner join likes on users.user_id=likes.user_id where likes.post_id=13;`
 
-- 5. Edina needs to know the post count which are liked by others. `SELECT COUNT(DISTINCT posts.post_id) liked_posts_count FROM posts inner join likes on posts.post_id=likes.post_id where posts.user_id = 1;`
+5. Edina needs to know the post count which are liked by others. `SELECT COUNT(DISTINCT posts.post_id) liked_posts_count FROM posts inner join likes on posts.post_id=likes.post_id where posts.user_id = 1;`
 
-- 6. Paula needs to check the count of awarness and trickes likes count, here awarness id is 17 and trickes id is 20.`SELECT posts.post_content, COUNT(likes.like_id) FROM posts LEFT JOIN likes ON posts.post_id = likes.post_id WHERE posts.post_id IN (17, 20) GROUP BY posts.post_content;`
-
-- 7. List Posts of Edina which has likes and also not liked posts.
-     `SELECT
+6. Paula needs to check the count of awarness and trickes likes count, here awarness id is 17 and trickes id is 20.`SELECT posts.post_content, COUNT(likes.like_id) FROM posts LEFT JOIN likes ON posts.post_id = likes.post_id WHERE posts.post_id IN (17, 20) GROUP BY posts.post_content;`
+7. List Posts of Edina which has likes and also not liked posts.
+   `SELECT
     p.post_id,
     p.post_content,
     CASE WHEN COUNT(l.like_id) > 0 THEN 'Liked' ELSE 'Not Liked' END AS like_status
@@ -58,27 +57,27 @@ GROUP BY
 ORDER BY
     like_status;`
 
-- 8. Search all users posts with Text "sal"
+8. Search all users posts with Text "sal"
 
 The LIKE operator is case sensitive, if you want to do a case insensitive search, use the ILIKE operator instead.
 
 `SELECT * FROM posts WHERE posts.post_content ILIKE '%sal%';`
 
-- 9. Get the count of colin posts
-     `SELECT COUNT(posts.post_id) AS no_of_colin_post FROM posts WHERE  posts.user_id=2;`
+9. Get the count of colin posts
+   `SELECT COUNT(posts.post_id) AS no_of_colin_post FROM posts WHERE  posts.user_id=2;`
 
-- 10. Get count of likes for the post cartoon. user colin
-      `select COUNT(likes.like_id) AS cartoon_likes_count from likes where likes.post_id = 7;`
+10. Get count of likes for the post cartoon. user colin
+    `select COUNT(likes.like_id) AS cartoon_likes_count from likes where likes.post_id = 7;`
 
 11. Get the maximum likes posts.
     `select post_id, count(post_id) from likes GROUP BY post_id HAVING COUNT(post_id)>1 order by count(post_id) desc limit 2;`
 
-- 12. In Edina, sort posts by title in forward.
-      post content is ordered by ascending order for the user edina.
-      `iselect * from posts where userid=1 ORDER BY postcontent;`
+12. In Edina, sort posts by title in forward.
+    post content is ordered by ascending order for the user edina.
+    `iselect * from posts where userid=1 ORDER BY postcontent;`
 
-- 13. In Paula, sort post by date backward.
-      `instaclone=# select * from posts where userid=4 ORDER BY postdate DESC;`
+13. In Paula, sort post by date backward.
+    `instaclone=# select * from posts where userid=4 ORDER BY postdate DESC;`
 
-- 14. Filter today posted posts.
-      `instaclone=# select * from posts where postdate= 'today';`
+14. Filter today posted posts.
+    `instaclone=# select * from posts where postdate= 'today';`
