@@ -80,4 +80,4 @@ The LIKE operator is case sensitive, if you want to do a case insensitive search
     `select * from posts where user_id=4 ORDER BY post_date DESC;`
 
 14. Filter today posted posts.
-    `instaclone=# select * from posts where postdate= 'today';`
+    `select * from posts where post_date= 'today';`
