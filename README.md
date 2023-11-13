@@ -70,7 +70,12 @@ The LIKE operator is case sensitive, if you want to do a case insensitive search
     `select COUNT(likes.like_id) AS cartoon_likes_count from likes where likes.post_id = 7;`
 
 11. Get the maximum likes posts.
-    `select post_id, count(post_id) from likes GROUP BY post_id HAVING COUNT(post_id)>1 order by count(post_id) desc limit 2;`
+    `select p.post_content, count(l.like_id) like_count 
+from posts p 
+left join likes l on p.post_id=l.post_id 
+group by p.post_content
+order by like_count desc 
+limit 2;`
 
 12. In Edina, sort posts by title in forward.
     post content is ordered by ascending order for the user edina.
