@@ -74,10 +74,10 @@ The LIKE operator is case sensitive, if you want to do a case insensitive search
 
 12. In Edina, sort posts by title in forward.
     post content is ordered by ascending order for the user edina.
-    `iselect * from posts where userid=1 ORDER BY postcontent;`
+    `select * from posts where user_id=1 ORDER BY post_content;`
 
 13. In Paula, sort post by date backward.
-    `instaclone=# select * from posts where userid=4 ORDER BY postdate DESC;`
+    `select * from posts where user_id=4 ORDER BY post_date DESC;`
 
 14. Filter today posted posts.
     `instaclone=# select * from posts where postdate= 'today';`
