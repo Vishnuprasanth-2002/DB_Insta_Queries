@@ -3,7 +3,7 @@
 - To create database, CREATE DATABASE instaclone
 - To connect the database, \c instaclone
 
-## Create table
+# Create table
 
 CREATE TABLE users(user_id SERIAL PRIMARY KEY NOT NULL, name VARCHAR NOT NULL);
 
