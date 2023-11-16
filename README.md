@@ -1,7 +1,6 @@
 # Create database Instaclone
 
 - To create database, CREATE DATABASE instaclone
-- To connect the database, \c instaclone
 
 ## Create table
 
