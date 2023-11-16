@@ -15,7 +15,7 @@ user_id SERIAL REFERENCES users(user_id));
 CREATE TABLE likes(like_id SERIAL PRIMARY KEY NOT NULL, post_id SERIAL REFERENCES posts(post_id),
 user_id SERIAL REFERENCES users(user_id))
 
-## Insert datas
+# Insert datas
 
 INSERT INTO users(name) VALUES('Edina'),('Colin'),('Glenda'),('Paula');
 
@@ -28,7 +28,7 @@ INSERT INTO likes(post_id, user_id) VALUES(13, 3),(13,4),(13,1),(13,2),(14,1),(1
 (17,3),(17,1),(19,3),(19,2),(1,4),(1,3),(4,3),(4,4),(4,2),(7,3),(7,4),(7,1),(7,2),(8,4),
 (8,1),(9,4),(9,1),(9,3)
 
-## task
+# task
 
 1. list all users `SELECT * from users;`
 
